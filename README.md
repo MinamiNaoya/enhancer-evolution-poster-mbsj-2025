@@ -13,18 +13,5 @@
 DNA言語モデルをベースとした機械学習モデルを開発し、複数の公開エンハンサーデータを用いて評価する
 
 ### 結果
+EvoPhantは種横断のエンハンサー予測可能性を示した。
 
-
-
-## Cross-Species Enhancer Prediction AI: A New Approach to Unravel Cancer Resistance and Longevity
-
-### Abstract
-
-
-### Objective  
-
-
-### Method  
-
-
-### Results
