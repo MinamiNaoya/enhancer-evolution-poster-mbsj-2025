@@ -3,20 +3,17 @@
 
 ### 1. 背景：がん耐性・長寿動物の謎は「遺伝子調節」にある
 
-大型・長寿にもかかわらず低いがん発生率を示すゾウ・ホッキョククジラは、Petoのパラドックスとして知られる生物学上の未解決問題である。
+1975年、イギリスの疫学者Petoはがんへのなりやすさと体の大きさが比例しないというパラドックスを提唱した。
 
-一方で King & Wilson（1975）は、「種差は遺伝子配列ではなく遺伝子調節に起因する」と提唱し、
-Villar らは多種比較で エンハンサーが最も高速に進化する領域であることを示した。
-
+一方で同じ年に海をはさんだアメリカで研究をしていたKing & Wilsonは、ヒトとチンパンジーの比較研究から「種差は遺伝子配列ではなく遺伝子調節に起因する」と提唱した。
+それから40年後の2015年ゲノム解析が発達し、Villar らは多種比較で エンハンサーが種特異的かつ、同じ日コード領域に存在するプロモーターと比較しても進化速度が大きい領域であることを示した。
+そこで我々は
 ➡ がん耐性・長寿という極端な形質の鍵が、種特異的エンハンサーに存在する可能性がある。
-
-しかし、希少動物ではサンプル取得が難しく、エンハンサー解析は長年停滞していた。
+という仮説を立てた。
+しかし、希少動物ではサンプル取得の難しさなどによりがん耐性・長寿動物のエンハンサー進化はほとんど調べられてこなかった。
 
 ### 2. 目的：エンハンサー進化解析の“壁”を超える AI の構築
-
-がん耐性・長寿動物における
-「エンハンサーの種横断予測」
-を可能にするため、DNA言語モデルを基盤とした新規AI EvoPhant を開発した。
+データの不足を補うため、多種のゲノムからゲノムの文法を学習したDNA言語モデルをベースとした、エンハンサー予測AI 「EvoPhant」 を開発した。
 
 
 ### 3. 結果：EvoPhant は既存法を超え、種横断予測にも成功
@@ -43,48 +40,62 @@ H3K27ac − H3K4me3
 
 
 
-## Cross-Species Enhancer Prediction AI: A New Approach to Uncover Cancer Resistance and Longevity in Animals
-### 1. Background: The mystery of cancer-resistant, long-lived animals lies in gene regulation
+## A Cross-Species Enhancer Prediction AI: A New Approach to Cancer Resistance and Longevity
+### 1. Background: The Mystery of Cancer Resistance and Longevity Lies in Gene Regulation
 
-Elephants and bowhead whales exhibit remarkably low cancer incidence despite their large body size and long lifespan—a long-standing biological paradox known as Peto’s paradox.
+In 1975, the British epidemiologist Richard Peto proposed a paradox:
+cancer incidence does not scale with body size or lifespan, despite the expectation that more cells and more cell divisions should increase cancer risk.
 
-King & Wilson (1975) proposed that phenotypic differences among species arise primarily from changes in gene regulation rather than coding sequences.
-Villar et al. further showed through multi-species comparisons that enhancers are among the fastest-evolving regions in the genome.
+In the same year, across the ocean in the United States, King & Wilson proposed—based on human–chimpanzee comparisons—that
+species differences arise not from protein-coding sequences, but from gene regulation.
 
-➡ These findings suggest that the key to extreme phenotypes such as cancer resistance and extended longevity may lie in species-specific enhancer evolution.
+Forty years later, with advances in genome-wide assays, Villar et al. (2015) analyzed multi-species ChIP-seq datasets and demonstrated that:
 
-However, enhancer studies in rare or non-model species have been limited due to difficulties in sample acquisition.
+Enhancers are highly species-specific, and
 
-### 2. Objective: Building an AI system that overcomes the barriers in enhancer evolution research
+They evolve more rapidly than promoters, even though both reside in non-coding regions.
 
-To enable cross-species prediction of enhancers, even in cancer-resistant and long-lived animals, we developed EvoPhant, a new AI model built upon DNA language models.
+Based on these findings, we hypothesized:
+➡ Extreme traits such as cancer resistance and longevity may be encoded in species-specific enhancers.
 
-### 3. Results: EvoPhant outperforms existing methods and succeeds in cross-species prediction
-① Superior performance on iEnhancer benchmarks
+However, due to limited sample availability in rare animals,
+the evolution of enhancers in cancer-resistant and long-lived species has remained largely unexplored.
 
-EvoPhant exceeded existing models, with particularly strong performance on EnhancerAtlas (pig, heart).
+### 2. Objective: Building an AI System to Overcome the Barriers of Enhancer Evolution Analysis
 
-② Reduced performance on naked mole-rat H3K27ac ChIP-seq data
+To overcome data scarcity, we developed EvoPhant, an enhancer prediction AI model built upon a DNA language model that learns the “grammar” of genomes across diverse species.
 
-This dataset defines enhancers using H3K27ac − H3K4me3,
-whereas common enhancer definitions often include H3K27ac + H3K4me1.
+### 3. Results: EvoPhant Outperforms Existing Methods and Enables Cross-Species Prediction
+① Outperforms existing models on the iEnhancer benchmark
 
-➡ Differences in labeling criteria may explain the reduced performance, indicating the need for additional experimental validation.
+EvoPhant achieved particularly high accuracy on EnhancerAtlas (pig heart) datasets.
 
-③ Cross-species enhancer prediction using in vivo datasets (LOOSV, human/mouse)
+② Reduced performance on naked mole-rat H3K27ac-derived ChIP-seq data
 
-Training on human → predicting mouse: higher performance
+This dataset defines enhancers using:
 
-Training on mouse → predicting human: lower performance
+H3K27ac − H3K4me3
 
-Analysis of false-positive peaks using ENCODE Screening revealed that
-proximal enhancers were frequently enriched, including cCREs not annotated in the original dataset.
+without incorporating H3K4me1, a typical enhancer mark.
+This annotation difference may explain the reduced performance, and additional experimental validation is required.
 
-➡ EvoPhant appears capable of capturing shared sequence features of proximal enhancers that are conserved across species.
+③ Cross-species prediction validated using in vivo enhancers (human/mouse) with LOOSV
 
-### 4. Future Directions: A foundation for uncovering the mechanisms of cancer resistance and longevity
+Trained on human → predicted mouse
 
-EvoPhant enables systematic analysis of enhancer evolution in rare species.
-By integrating ATAC-seq and other experimental validation, this framework will help elucidate:
+Trained on mouse → predicted human
 
-How cancer-resistant and long-lived animals evolved their extraordinary phenotypes at the molecular and regulatory levels.
+Models trained on human data showed higher accuracy when predicting mouse enhancers.
+
+Furthermore, ENCODE Screening analysis of predicted false positives revealed:
+
+Many corresponded to proximal enhancers, and
+
+Some matched cCREs not included in the original dataset
+
+→ suggesting that “false positives” often reflect biologically meaningful regulatory elements.
+
+### 4. Future Directions: A New Foundation for Uncovering the Mechanisms of Cancer Resistance and Longevity
+
+EvoPhant provides a computational foundation for studying enhancer evolution in rare species.
+We will integrate this framework with ATAC-seq and other wet-lab validations to investigate the molecular mechanisms underlying cancer resistance and longevity.
